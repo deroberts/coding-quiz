@@ -14,20 +14,23 @@
 // global variables
 var question = document.getElementById("question");
 var timerEl = document.querySelector("#timer");
+var points = document.querySelector("#points");
 var startButton = document.querySelector("#start-button");
 var choice1 = document.getElementById("btn1");
 var choice2 = document.getElementById("btn2");
 var choice3 = document.getElementById("btn3");
 var choice4 = document.getElementById("btn4");
 var timeLeft = 60;
-
+let addPoints = 10; //score
+const maxQuestions = 3;
+var questionCounter = 0;
 //need array of questions
 let questions = [
     {
         question: "what is your favorite color?",
         choice1: "red",
-        choice2: "blue",
-        choice3: "green",
+        choice2: "blue", 
+        choice3: "green", 
         choice4: "yellow",
         correctAnswer: "green"
     },
@@ -49,24 +52,33 @@ let questions = [
     },
 ]
 
-//function to shuffle questions after answer is selected
-function shuffleQuestions() {
-    questions.sort(() => Math.random() - .5)
-}
+choice1.addEventListener("click", checkAnswer);
+choice2.addEventListener("click", checkAnswer);
+choice3.addEventListener("click", checkAnswer);
+choice4.addEventListener("click", checkAnswer);
 
 
-
-//need function to display questions
+//need function to display questions and answers, shuffle them, and make sure they don't repeat
 function displayQuestion() {
-    question.innerHTML = questions[0].question;
-    choice1.innerHTML = questions[0].choice1;
-    choice2.innerHTML = questions[0].choice2;
-    choice3.innerHTML = questions[0].choice3;
-    choice4.innerHTML = questions[0].choice4;
+    question.textContent = questions[0].question;
+    choice1.textContent = questions[0].choice1;
+    choice2.textContent = questions[0].choice2;
+    choice3.textContent = questions[0].choice3;
+    choice4.textContent = questions[0].choice4
+};
+
+function displayNextQuestions() {
+    questionCounter++;
+    displayQuestion();
+}
+
+function shuffleQuestions() {
+    questions.sort(() => Math.random() - .5);
 }
 
 
 
+    
 //need function to start timer on start button click
 function startTimer() {
     let timeInterval = setInterval(function () {
@@ -77,7 +89,7 @@ function startTimer() {
             timerEl.textContent = timeLeft + ' second remaining';
             timeLeft--;
         } else {
-            timerEl.textContent = '';
+            timerEl.textContent = 'game over';
             clearInterval(timeInterval);
         }
     }, 1000);
@@ -85,20 +97,29 @@ function startTimer() {
 
 //need function to check if answer is correct
 function checkAnswer() {
+    if (questions.length === 1) {
+        window.location.href = "hs.html";
+    }
     if (questions[0].correctAnswer === this.innerHTML) {
         console.log("correct");
+        addPoints += 10;
     } else {
         console.log("incorrect");
     }
+    //display next question in function
+    questions.shift();
+    displayNextQuestions();
+    //if there are no more questions, end the game and go to hs.html
+    
 }
 
 
 // function to start quiz on start button click
 function startQuiz() {
+    questionCounter = 0;
+    addPoints = 0;
     startTimer();
     displayQuestion();
-    checkAnswer();
-    shuffleQuestions();
 }
 
 startQuiz();
