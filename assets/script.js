@@ -12,18 +12,18 @@
 
 // need first set of questions to load on start button click
 // global variables
-var question = document.getElementById("question");
-var timerEl = document.querySelector("#timer");
-var points = document.querySelector("#points");
-var startButton = document.querySelector("#start-button");
-var choice1 = document.getElementById("btn1");
-var choice2 = document.getElementById("btn2");
-var choice3 = document.getElementById("btn3");
-var choice4 = document.getElementById("btn4");
-var timeLeft = 60;
+let question = document.getElementById("question");
+let timerEl = document.querySelector("#timer");
+let points = document.querySelector("#points");
+let startButton = document.querySelector("#start-button");
+let choice1 = document.getElementById("btn1");
+let choice2 = document.getElementById("btn2");
+let choice3 = document.getElementById("btn3");
+let choice4 = document.getElementById("btn4");
+let timeLeft = 60;
 let addPoints = 10; //score
-const maxQuestions = 3;
-var questionCounter = 0;
+let maxQuestions = 3;
+let questionCounter = 0;
 //need array of questions
 let questions = [
     {
@@ -91,20 +91,29 @@ function startTimer() {
         } else {
             timerEl.textContent = 'game over';
             clearInterval(timeInterval);
+            endGame();
         }
     }, 1000);
+}
+//function to save initials and score to local storage
+function saveScore() {
+    localStorage.setItem("score", addPoints);
 }
 
 //need function to check if answer is correct
 function checkAnswer() {
-    if (questions.length === 1) {
-        window.location.href = "hs.html";
+    if (questions.length === 0) {
+        //create button to finish game and proceed to hs.html
+        saveScore();
+        endGame();
     }
     if (questions[0].correctAnswer === this.innerHTML) {
         console.log("correct");
         addPoints += 10;
+        points.textContent = addPoints;
     } else {
         console.log("incorrect");
+        timeLeft -= 10;
     }
     //display next question in function
     questions.shift();
@@ -112,6 +121,22 @@ function checkAnswer() {
     //if there are no more questions, end the game and go to hs.html
     
 }
+
+// function to hide answer buttons and create button to finish game and proceed to hs.html
+function endGame() {
+    choice1.style.display = "none";
+    choice2.style.display = "none";
+    choice3.style.display = "none";
+    choice4.style.display = "none";
+    var finishButton = document.createElement("button");
+    finishButton.textContent = "Finish Game";
+    finishButton.addEventListener("click", function() {
+        window.location.href = "hs.html";
+    })
+    document.body.appendChild(finishButton);
+
+}
+
 
 
 // function to start quiz on start button click
