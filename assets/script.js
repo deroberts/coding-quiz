@@ -68,13 +68,27 @@ function displayQuestion() {
 };
 
 function displayNextQuestions() {
+    if (questions.length === 0 || questionCounter >= maxQuestions) {
+        endGame();} else {
     questionCounter++;
     displayQuestion();
+}
 }
 
 function shuffleQuestions() {
     questions.sort(() => Math.random() - .5);
 }
+
+// function to start quiz on start button click
+function startQuiz() {
+    questionCounter = 0;
+    addPoints = 0;
+    startTimer();
+    displayQuestion();
+}
+
+startQuiz();
+
 
 
 
@@ -110,7 +124,8 @@ function checkAnswer() {
     if (questions[0].correctAnswer === this.innerHTML) {
         console.log("correct");
         addPoints += 10;
-        points.textContent = addPoints;
+        points.textContent =addPoints + " points";
+        saveScore();
     } else {
         console.log("incorrect");
         timeLeft -= 10;
@@ -138,15 +153,5 @@ function endGame() {
 }
 
 
-
-// function to start quiz on start button click
-function startQuiz() {
-    questionCounter = 0;
-    addPoints = 0;
-    startTimer();
-    displayQuestion();
-}
-
-startQuiz();
 
 
