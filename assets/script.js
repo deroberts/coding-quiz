@@ -111,7 +111,7 @@ function startTimer() {
 }
 //function to save initials and score to local storage
 function saveScore() {
-    localStorage.setItem("score", addPoints);
+    localStorage.setItem("score", JSON.stringify(addPoints));
 }
 
 //need function to check if answer is correct
@@ -146,7 +146,7 @@ function endGame() {
     var finishButton = document.createElement("button");
     finishButton.textContent = "Finish Game";
     finishButton.addEventListener("click", function() {
-        window.location.href = "hs.html";
+        window.location.href = "final-score.html";
     })
     document.body.appendChild(finishButton);
 
