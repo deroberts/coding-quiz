@@ -12,6 +12,7 @@
 
 // need first set of questions to load on start button click
 // global variables
+
 let question = document.getElementById("question");
 let timerEl = document.querySelector("#timer");
 let points = document.querySelector("#points");
@@ -22,34 +23,42 @@ let choice3 = document.getElementById("btn3");
 let choice4 = document.getElementById("btn4");
 let timeLeft = 60;
 let addPoints = 10; //score
-let maxQuestions = 3;
+let maxQuestions = 4;
 let questionCounter = 0;
 //need array of questions
 let questions = [
     {
-        question: "what is your favorite color?",
-        choice1: "red",
-        choice2: "blue", 
-        choice3: "green", 
-        choice4: "yellow",
-        correctAnswer: "green"
+        question: "which is NOT a programming language?",
+        choice1: "Bananascript",
+        choice2: "Java", 
+        choice3: "Python", 
+        choice4: "Javascript",
+        correctAnswer: "Bananascript"
     },
     {
-        question: "what is your favorite animal?",
-        choice1: "cat",
-        choice2: "dog",
-        choice3: "bird",
-        choice4: "fish",
-        correctAnswer: "dog"
+        question: "is coding easy?",
+        choice1: "yes",
+        choice2: "easy peasy",
+        choice3: "it is not",
+        choice4: "maybe",
+        correctAnswer: "it is not"
     },
     {
-        question: "what is your favorite food?",
-        choice1: "pizza",
-        choice2: "pasta",
-        choice3: "salad",
-        choice4: "sandwich",
-        correctAnswer: "pizza"
+        question: "Javascript is a ____-side programming language?",
+        choice1: "client",
+        choice2: "server",
+        choice3: "both client and server",
+        choice4: "none of the above",
+        correctAnswer: "both client and server"
     },
+    {
+        question: "who could beat Keanu Reeves in a fight?",
+        choice1: "Keanu Reeves",
+        choice2: "Ted from Bill and Ted's Excellent Adventure",
+        choice3: "Reanu Keeves",
+        choice4: "no one",
+        correctAnswer: "Reanu Keeves"
+    }
 ]
 
 choice1.addEventListener("click", checkAnswer);
@@ -151,6 +160,8 @@ function endGame() {
     document.body.appendChild(finishButton);
 
 }
+
+
 
 
 
