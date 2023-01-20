@@ -22,6 +22,10 @@ https://deroberts.github.io/coding-quiz/index.html
 ## Screenshots
 ![quizmain](https://user-images.githubusercontent.com/112577325/213524970-9c40bd3e-cb9a-4bae-9931-7b34a6127cf8.png)
 
+![quizquestions](https://user-images.githubusercontent.com/112577325/213703611-21ee2bb1-bbd4-40ed-a95d-28445d5efc9f.PNG)
+
 ![finalscore](https://user-images.githubusercontent.com/112577325/213524996-7613536d-7ffc-449a-b737-276d631f6922.png)
 
 ![highscores](https://user-images.githubusercontent.com/112577325/213525016-2df5702f-4ef8-4383-8cd3-771cbdcba7e7.png)
+## coming soon or eventually:
+saving an array of high scores to the page
